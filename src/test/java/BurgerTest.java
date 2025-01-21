@@ -1,3 +1,4 @@
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,6 +14,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static praktikum.IngredientType.SAUCE;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -46,6 +48,9 @@ public class BurgerTest {
         burger.addIngredient(tomato);
         burger.addIngredient(cheese);
         assertEquals(3,burger.ingredients.size());
+        assertTrue(burger.ingredients.contains(meat));
+        assertTrue(burger.ingredients.contains(tomato));
+        assertTrue(burger.ingredients.contains(cheese));
     }
 
     @Test
@@ -60,9 +65,9 @@ public class BurgerTest {
     @Test
     public void isIngredientMovedTest(){
         burger.ingredients.addAll(Arrays.asList(meat, tomato));
-        List<Ingredient> actual = new ArrayList<>(Arrays.asList(tomato, meat));
+        List<Ingredient> expected = new ArrayList<>(Arrays.asList(tomato, meat));
         burger.moveIngredient(0, 1);
-       assertEquals(actual,burger.ingredients);
+       assertEquals(expected,burger.ingredients);
     }
 
     @Test
@@ -71,8 +76,8 @@ public class BurgerTest {
         burger.addIngredient(ingredient);
         Mockito.when(bun.getPrice()).thenReturn(100.00f);
         Mockito.when(ingredient.getPrice()).thenReturn(150.00f);
-        float expected = burger.getPrice();
-        assertEquals(expected, 350.00f, 0);
+        float actual = burger.getPrice();
+        assertEquals(350.00f, actual, 0);
     }
 
     @Test
