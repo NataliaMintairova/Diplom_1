@@ -9,12 +9,10 @@ import static org.junit.Assert.assertEquals;
     public class BunNameParamTest {
         private final String name;
         private final float price;
-        //private final String expected;
 
         public BunNameParamTest(String name, float price){
             this.name = name;
             this.price = price;
-            //this.expected = expected;
         }
 
     @Parameterized.Parameters(name = "название булки = {0}, цена булки = {1}")
